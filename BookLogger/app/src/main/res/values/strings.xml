@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">BookLogger</string>
+    <string name="title_reading">Lendo</string>
+    <string name="title_read">Lido</string>
+    <string name="title_to_read">Lerei</string>
+    <string name="title_wishlist">Wishlist</string>
+    <string name="title_settings">Configurações</string>
+</resources>

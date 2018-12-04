@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_reading"
+        android:icon="@drawable/ic_book_open_page"
+        android:title="@string/title_reading" />
+
+    <item
+        android:id="@+id/navigation_read"
+        android:icon="@drawable/ic_book_read"
+        android:title="@string/title_read" />
+
+    <item
+        android:id="@+id/navigation_to_read"
+        android:icon="@drawable/ic_bookmark_to_read"
+        android:title="@string/title_to_read" />
+
+    <item
+        android:id="@+id/navigation_wishlist"
+        android:icon="@drawable/ic_wishlist"
+        android:title="@string/title_wishlist" />
+
+    <item
+        android:id="@+id/navigation_settings"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/title_settings" />
+
+</menu>
