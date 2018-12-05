@@ -7,8 +7,12 @@
     <string name="title_wishlist">Wishlist</string>
     <string name="title_settings">Configurações</string>
 
+    <string name="txt_name">Nome</string>
     <string name="txt_email">E-mail</string>
     <string name="txt_password">Senha</string>
+
     <string name="btn_login">Login</string>
     <string name="btn_signup">Cadastre-se</string>
+    <string name="btn_signup_submit">Cadastrar</string>
+
 </resources>
