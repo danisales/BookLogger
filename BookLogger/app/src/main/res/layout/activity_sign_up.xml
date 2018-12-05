@@ -8,15 +8,7 @@
     tools:context=".SignUpActivity">
 
     <EditText
-        android:id="@+id/txt_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/txt_name" />
-
-    <EditText
-        android:id="@+id/txt_email"
+        android:id="@+id/txt_signup_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -24,7 +16,7 @@
         android:inputType="textEmailAddress" />
 
     <EditText
-        android:id="@+id/txt_password"
+        android:id="@+id/txt_signup_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
