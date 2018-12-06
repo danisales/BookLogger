@@ -1,26 +1,32 @@
 package br.ufpe.cin.dso.booklogger
 
 import android.util.Log
-import com.github.kittinunf.fuel.Fuel
+import com.github.kittinunf.fuel.httpGet
+import org.json.JSONObject
 
 class GoogleBooksRequest {
     var TAG = "GoogleBooksRequest"
-    private fun request(url: String){
-        Fuel.get(url).responseString { request, response, result ->
-            result.fold({ d ->
-                Log.d(TAG, d)
-            }, { err ->
-                Log.w(TAG, err)
-            })
-        }
+    var content = ""
+    private fun request(url: String) : JSONObject {
+        val (request, response, result) = url.httpGet().responseString()
+
+        /*var obj = JSONObject(result.get())
+        var kind = obj.getString("kind")
+        Log.d(TAG, kind)*/
+
+        return JSONObject(result.get())
     }
 
-    fun search(query: String){
+    fun setReqContent(c: String) {
+        this.content = c
+    }
+
+    fun search(query: String) : JSONObject {
         query.replace(" ", "+")
-        request("https://www.googleapis.com/books/v1/volumes?q=" + query)
+        return request("https://www.googleapis.com/books/v1/volumes?q=" + query)
     }
 
-    fun get(bookId: String){
-        request("https://www.googleapis.com/books/v1/volumes/" + bookId)
+    fun get(bookId: String) : JSONObject {
+        return request("https://www.googleapis.com/books/v1/volumes/" + bookId)
     }
 }
