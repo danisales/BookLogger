@@ -28,7 +28,7 @@
         tools:layout_editor_absoluteY="99dp" />
 
     <Button
-        android:id="@+id/btn_login"
+        android:id="@+id/btn_login_initial"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/btn_login"
@@ -36,7 +36,7 @@
         tools:layout_editor_absoluteY="214dp" />
 
     <Button
-        android:id="@+id/btn_signup"
+        android:id="@+id/btn_signup_initial"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/btn_signup"
