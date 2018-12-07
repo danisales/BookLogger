@@ -14,4 +14,5 @@
     <string name="btn_signup">Cadastre-se</string>
     <string name="btn_signup_submit">Cadastrar</string>
 
+    <string name="btn_search">Pesquisar</string>
 </resources>

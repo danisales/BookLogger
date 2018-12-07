@@ -41,6 +41,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+
+        openFragment(ReadingFragment())
     }
 
     private fun openFragment(fragment: Fragment) {

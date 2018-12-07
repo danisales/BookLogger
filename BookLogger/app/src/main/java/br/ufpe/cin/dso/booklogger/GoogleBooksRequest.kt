@@ -2,6 +2,7 @@ package br.ufpe.cin.dso.booklogger
 
 import android.util.Log
 import com.github.kittinunf.fuel.httpGet
+import org.json.JSONArray
 import org.json.JSONObject
 
 class GoogleBooksRequest {
@@ -32,8 +33,15 @@ class GoogleBooksRequest {
 
     fun results(query: String) : List<Book>{
         var result = search(query)
-        var items = result.getJSONArray("items")
-        var numItems = 10
+        var items = JSONArray()
+
+        try {
+            items = result.getJSONArray("items")
+        } catch(e: Exception) {
+            return arrayListOf<Book>()
+        }
+
+        var numItems = minOf(20, items.length())
         val listItems = ArrayList<Book>()
 
         (0..numItems-1).forEach { i ->
@@ -42,7 +50,12 @@ class GoogleBooksRequest {
             var id = item.getString("id")
             var volumeInfo = item.getJSONObject("volumeInfo")
             var title = volumeInfo.getString("title")
-            var author = volumeInfo.getJSONArray("authors").getString(0)
+            var author = ""
+            try{
+                author = volumeInfo.getJSONArray("authors").getString(0)
+            } catch(e: Exception){
+                author = "Nao informado"
+            }
             var imageLinks: JSONObject? = null
             var thumbnail: String? = null
             try{
