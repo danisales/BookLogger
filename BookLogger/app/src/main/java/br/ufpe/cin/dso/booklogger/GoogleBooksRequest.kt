@@ -53,8 +53,14 @@ class GoogleBooksRequest {
             var author = ""
             try{
                 author = volumeInfo.getJSONArray("authors").getString(0)
-            } catch(e: Exception){
-                author = "Nao informado"
+            }catch(e: Exception){
+                author = "Autor nao informado"
+            }
+            var publisher = ""
+            try{
+                publisher = volumeInfo.getString("publisher")
+            }catch(e: Exception){
+                publisher = "Editora nao informada"
             }
             var imageLinks: JSONObject? = null
             var thumbnail: String? = null
@@ -65,7 +71,7 @@ class GoogleBooksRequest {
             var borrowed = false
             var status = null
 
-            var book = Book(id, title, author, thumbnail, borrowed, status)
+            var book = Book(id, title, author, publisher, thumbnail, borrowed, status)
             listItems.add(book)
         }
         return listItems

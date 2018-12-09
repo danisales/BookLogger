@@ -17,9 +17,11 @@ class CreateBookActivity : AppCompatActivity() {
 
         txt_book_title.isEnabled = false
         txt_book_author.isEnabled = false
+        txt_book_publisher.isEnabled = false
 
         txt_book_title.setText(intent.extras.getString("TITLE"))
         txt_book_author.setText(intent.extras.getString("AUTHOR"))
+        txt_book_publisher.setText(intent.extras.getString("PUBLISHER"))
 
         val adapter = ArrayAdapter.createFromResource(this, R.array.book_status,
                 android.R.layout.simple_spinner_item)

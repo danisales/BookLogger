@@ -35,6 +35,7 @@ class BookAdapter(private val items: List<Book>, private val c : Context)
                 intent.putExtra("ID", i.id)
                 intent.putExtra("TITLE", i.title)
                 intent.putExtra("AUTHOR", i.author)
+                intent.putExtra("PUBLISHER", i.publisher)
                 intent.putExtra("THUMBNAIL", i.thumbnail)
                 c.startActivity(intent)
             }
