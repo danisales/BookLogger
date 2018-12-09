@@ -40,6 +40,7 @@ class CreateBookActivity : AppCompatActivity() {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                switch_borrowed.isSelected = false
                 switch_borrowed.isEnabled = !spinner_books.selectedItem
                         .equals(resources.getStringArray(R.array.book_status)[3])
             }
