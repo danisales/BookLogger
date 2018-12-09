@@ -47,7 +47,11 @@ class CreateBookActivity : AppCompatActivity() {
 
         btn_add_book.setOnClickListener{
             Log.d(TAG, spinner_books.selectedItem.toString())
-            addBook(user!!.uid, getBook())
+            try{
+                addBook(user!!.uid, getBook())
+            } catch(e: Exception){
+                Log.w(TAG, e.message)
+            }
         }
     }
 
