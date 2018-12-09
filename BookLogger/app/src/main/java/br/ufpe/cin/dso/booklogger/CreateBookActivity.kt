@@ -6,14 +6,22 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_create_book.*
 
 class CreateBookActivity : AppCompatActivity() {
     val TAG = "CreateBookActivity"
+    private var mAuth = FirebaseAuth.getInstance()
+    private var user = mAuth.currentUser
+    private lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_book)
+        database = FirebaseDatabase.getInstance().reference
 
         txt_book_title.isEnabled = false
         txt_book_author.isEnabled = false
@@ -39,7 +47,34 @@ class CreateBookActivity : AppCompatActivity() {
 
         btn_add_book.setOnClickListener{
             Log.d(TAG, spinner_books.selectedItem.toString())
+            addBook(user!!.uid, getBook())
         }
+    }
 
+    private fun getBook() : Book{
+        val id = intent.extras.getString("ID")
+        val title = intent.extras.getString("TITLE")
+        val author = intent.extras.getString("AUTHOR")
+        val publisher = intent.extras.getString("PUBLISHER")
+        val thumbnail = intent.extras.getString("THUMBNAIL")
+        val borrowed = switch_borrowed.isSelected
+        val status = spinner_books.selectedItem.toString()
+
+        return Book(id, title, author, publisher, thumbnail, borrowed, status)
+    }
+
+    private fun addBook(userId: String, book: Book){
+        try{
+            database.child("users")
+                    .child(userId)
+                    .child("books")
+                    .child(book.id)
+                    .setValue(book)
+            Toast.makeText(this, "Livro adicionado com sucesso", Toast.LENGTH_SHORT).show()
+            finish()
+        } catch(e: Exception){
+            Toast.makeText(this, "Algo deu errado", Toast.LENGTH_SHORT).show()
+            Log.w(TAG, e.message)
+        }
     }
 }
