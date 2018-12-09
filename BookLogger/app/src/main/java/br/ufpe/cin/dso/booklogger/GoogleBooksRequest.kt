@@ -10,11 +10,6 @@ class GoogleBooksRequest {
     var content = ""
     private fun request(url: String) : JSONObject {
         val (request, response, result) = url.httpGet().responseString()
-
-        //var obj = JSONObject(result.get())
-        //var volumeInfo = obj.getJSONObject("volumeInfo")
-        //Log.d(TAG, volumeInfo.getString("title"))
-
         return JSONObject(result.get())
     }
 
@@ -24,7 +19,8 @@ class GoogleBooksRequest {
 
     fun search(query: String) : JSONObject {
         query.replace(" ", "+")
-        return request("https://www.googleapis.com/books/v1/volumes?q=" + query)
+        val maxResults = 40
+        return request("https://www.googleapis.com/books/v1/volumes?q=" + query + "&maxResults=$maxResults")
     }
 
     fun get(bookId: String) : JSONObject {
@@ -41,7 +37,7 @@ class GoogleBooksRequest {
             return arrayListOf<Book>()
         }
 
-        var numItems = minOf(20, items.length())
+        var numItems = minOf(40, items.length())
         val listItems = ArrayList<Book>()
 
         (0..numItems-1).forEach { i ->
