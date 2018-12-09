@@ -22,7 +22,8 @@
             android:name=".MainActivity"
             android:label="@string/app_name" />
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".SearchBookActivity"></activity>
+        <activity android:name=".SearchBookActivity" />
+        <activity android:name=".CreateBookActivity"></activity>
     </application>
 
 </manifest>

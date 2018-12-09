@@ -1,12 +1,15 @@
 package br.ufpe.cin.dso.booklogger
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_book.view.*
+import org.jetbrains.anko.activityManager
 
 
 class BookAdapter(private val items: List<Book>, private val c : Context)
@@ -24,7 +27,18 @@ class BookAdapter(private val items: List<Book>, private val c : Context)
         holder?.title?.text = i.title
         holder?.author?.text = i.author
 
-        holder?.itemView.setOnClickListener(){}
+        var activity = c as Activity
+
+        if(!activity.localClassName.equals("MainActivity")) {
+            holder?.itemView.setOnClickListener() {
+                var intent = Intent(c, CreateBookActivity::class.java)
+                intent.putExtra("ID", i.id)
+                intent.putExtra("TITLE", i.title)
+                intent.putExtra("AUTHOR", i.author)
+                intent.putExtra("THUMBNAIL", i.thumbnail)
+                c.startActivity(intent)
+            }
+        }
     }
 
     class ViewHolder(item: View): RecyclerView.ViewHolder(item), View.OnClickListener{

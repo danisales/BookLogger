@@ -15,4 +15,14 @@
     <string name="btn_signup_submit">Cadastrar</string>
 
     <string name="btn_search">Pesquisar</string>
+
+    <string name="txt_borrowed">Emprestado</string>
+    <string name="btn_add_book">Adicionar</string>
+
+    <string-array name="book_status">
+        <item>Lendo</item>
+        <item>Lido</item>
+        <item>Lerei</item>
+        <item>Wishlist</item>
+    </string-array>
 </resources>

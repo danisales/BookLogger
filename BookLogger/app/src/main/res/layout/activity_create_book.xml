@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".CreateBookActivity">
+
+    <EditText
+        android:id="@+id/txt_book_title"
+        android:layout_width="match_parent"
+        android:layout_height="74dp"
+        android:ems="10"
+        android:inputType="none" />
+
+    <EditText
+        android:id="@+id/txt_book_author"
+        android:layout_width="match_parent"
+        android:layout_height="74dp"
+        android:ems="10"
+        android:inputType="none" />
+
+    <Spinner
+        android:id="@+id/spinner_books"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinner"
+        android:layout_margin="10dp"
+        android:entries="@array/book_status" />
+
+    <Switch
+        android:id="@+id/switch_borrowed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/txt_borrowed"
+        android:textSize="17sp"/>
+
+    <Button
+        android:id="@+id/btn_add_book"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/btn_add_book"
+        tools:layout_editor_absoluteX="88dp"
+        tools:layout_editor_absoluteY="214dp" />
+
+</LinearLayout>
