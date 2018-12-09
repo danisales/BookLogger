@@ -1,5 +1,6 @@
 package br.ufpe.cin.dso.booklogger
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -50,6 +51,7 @@ class CreateBookActivity : AppCompatActivity() {
             Log.d(TAG, spinner_books.selectedItem.toString())
             try{
                 addBook(user!!.uid, getBook())
+                startActivity(Intent(this.applicationContext, MainActivity::class.java))
             } catch(e: Exception){
                 Log.w(TAG, e.message)
             }
@@ -76,7 +78,7 @@ class CreateBookActivity : AppCompatActivity() {
                     .child(book.id)
                     .setValue(book)
             Toast.makeText(this, "Livro adicionado com sucesso", Toast.LENGTH_SHORT).show()
-            finish()
+            //finish()
         } catch(e: Exception){
             Toast.makeText(this, "Algo deu errado", Toast.LENGTH_SHORT).show()
             Log.w(TAG, e.message)
