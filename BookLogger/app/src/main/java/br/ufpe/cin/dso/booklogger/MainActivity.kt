@@ -8,24 +8,28 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.toolbar
 
 class MainActivity : AppCompatActivity() {
+    var statusList : Array<String> = emptyArray()
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_reading -> {
-                val readingFragment = ReadingFragment.newInstance()
+                val readingFragment = ReadingFragment.newInstance(statusList[0])
                 openFragment(readingFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_read -> {
-                message.setText("")
+                val readFragment = ReadingFragment.newInstance(statusList[1])
+                openFragment(readFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_to_read -> {
-                message.setText("")
+                val toReadFragment = ReadingFragment.newInstance(statusList[2])
+                openFragment(toReadFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_wishlist -> {
-                message.setText("")
+                val wishlistFragment = ReadingFragment.newInstance(statusList[3])
+                openFragment(wishlistFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_settings -> {
@@ -40,9 +44,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        statusList = resources.getStringArray(R.array.book_status)
+
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
-        openFragment(ReadingFragment())
+        openFragment(ReadingFragment.newInstance(statusList[0]))
     }
 
     private fun openFragment(fragment: Fragment) {

@@ -28,7 +28,7 @@ class ReadingFragment : Fragment() {
     private var mAuth = FirebaseAuth.getInstance()
     private var user = mAuth.currentUser
     private lateinit var database: DatabaseReference
-    val books: MutableList<Book> = mutableListOf()
+    //val books: MutableList<Book> = mutableListOf()
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -36,8 +36,9 @@ class ReadingFragment : Fragment() {
         database = FirebaseDatabase.getInstance().reference
 
         Thread(){
+            var status = arguments!!.get("STATUS") as String
             this.requireActivity().runOnUiThread {
-                getItems()
+                getItems(status)
             }
         }.start()
 
@@ -48,16 +49,16 @@ class ReadingFragment : Fragment() {
         return view
     }
 
-    fun getItems() {
+    fun getItems(status: String) {
         var reqActivity = this.requireActivity()
         val booksListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                Log.d(TAG, dataSnapshot.childrenCount.toString())
-                var books: MutableList<Book> = mutableListOf()
+                var books: ArrayList<Book> = arrayListOf()
                 dataSnapshot.children.forEach {
                     var book = it.getValue<Book>(Book::class.java)!!
                     books.add(book)
                 }
+                books = books.filter{x -> x.status.equals(status)} as ArrayList<Book>
 
                 var listBooks = view!!.findViewById(R.id.list_reading_books) as RecyclerView
                 listBooks.layoutManager = LinearLayoutManager(reqActivity)
@@ -75,7 +76,13 @@ class ReadingFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance(): ReadingFragment = ReadingFragment()
+        fun newInstance(status: String): ReadingFragment {
+            val fragment = ReadingFragment()
+            val args = Bundle()
+            args.putString("STATUS", status)
+            fragment.arguments = args
+            return fragment
+        }
     }
 
 }
