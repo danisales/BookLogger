@@ -3,6 +3,7 @@ package br.ufpe.cin.dso.booklogger
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -26,6 +27,10 @@ class BookAdapter(private val items: List<Book>, private val c : Context)
         val i = items.get(position)
         holder?.title?.text = i.title
         holder?.author?.text = i.author
+        if(i.borrowed){
+            holder?.borrowed?.text = "Emprestado"
+            holder?.itemView.setBackgroundColor(Color.parseColor("#efeded"))
+        }
 
         var activity = c as Activity
 
@@ -45,6 +50,7 @@ class BookAdapter(private val items: List<Book>, private val c : Context)
     class ViewHolder(item: View): RecyclerView.ViewHolder(item), View.OnClickListener{
         val title = item.item_title
         val author = item.item_author
+        val borrowed = item.item_borrowed
 
         override fun onClick(v: View?) {}
     }

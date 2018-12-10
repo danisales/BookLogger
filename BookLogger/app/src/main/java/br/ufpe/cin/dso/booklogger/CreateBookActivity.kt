@@ -41,7 +41,7 @@ class CreateBookActivity : AppCompatActivity() {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                switch_borrowed.isSelected = false
+                switch_borrowed.isChecked = false
                 switch_borrowed.isEnabled = !spinner_books.selectedItem
                         .equals(resources.getStringArray(R.array.book_status)[3])
             }
@@ -64,7 +64,7 @@ class CreateBookActivity : AppCompatActivity() {
         val author = intent.extras.getString("AUTHOR")
         val publisher = intent.extras.getString("PUBLISHER")
         val thumbnail = intent.extras.getString("THUMBNAIL")
-        val borrowed = switch_borrowed.isSelected
+        val borrowed = switch_borrowed.isChecked
         val status = spinner_books.selectedItem.toString()
 
         return Book(id, title, author, publisher, thumbnail, borrowed, status)
