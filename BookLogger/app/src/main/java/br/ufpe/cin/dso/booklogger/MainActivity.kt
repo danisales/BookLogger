@@ -5,7 +5,6 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import org.jetbrains.anko.toolbar
 
 class MainActivity : AppCompatActivity() {
     var statusList : Array<String> = emptyArray()
@@ -13,22 +12,22 @@ class MainActivity : AppCompatActivity() {
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_reading -> {
-                val readingFragment = ReadingFragment.newInstance(statusList[0])
+                val readingFragment = BookFragment.newInstance(statusList[0])
                 openFragment(readingFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_read -> {
-                val readFragment = ReadingFragment.newInstance(statusList[1])
+                val readFragment = BookFragment.newInstance(statusList[1])
                 openFragment(readFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_to_read -> {
-                val toReadFragment = ReadingFragment.newInstance(statusList[2])
+                val toReadFragment = BookFragment.newInstance(statusList[2])
                 openFragment(toReadFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_wishlist -> {
-                val wishlistFragment = ReadingFragment.newInstance(statusList[3])
+                val wishlistFragment = BookFragment.newInstance(statusList[3])
                 openFragment(wishlistFragment)
                 return@OnNavigationItemSelectedListener true
             }
@@ -48,7 +47,7 @@ class MainActivity : AppCompatActivity() {
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
-        openFragment(ReadingFragment.newInstance(statusList[0]))
+        openFragment(BookFragment.newInstance(statusList[0]))
     }
 
     private fun openFragment(fragment: Fragment) {

@@ -1,6 +1,5 @@
 package br.ufpe.cin.dso.booklogger
 
-import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -13,22 +12,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.fragment_reading.*
 import kotlinx.android.synthetic.main.fragment_reading.view.*
-import org.jetbrains.anko.runOnUiThread
-import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.support.v4.runOnUiThread
-import org.jetbrains.anko.support.v4.uiThread
 
-class ReadingFragment : Fragment() {
-    val TAG = "ReadingFragment"
+class BookFragment : Fragment() {
+    val TAG = "BookFragment"
     private var mAuth = FirebaseAuth.getInstance()
     private var user = mAuth.currentUser
     private lateinit var database: DatabaseReference
-    //val books: MutableList<Book> = mutableListOf()
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -76,8 +68,8 @@ class ReadingFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance(status: String): ReadingFragment {
-            val fragment = ReadingFragment()
+        fun newInstance(status: String): BookFragment {
+            val fragment = BookFragment()
             val args = Bundle()
             args.putString("STATUS", status)
             fragment.arguments = args
