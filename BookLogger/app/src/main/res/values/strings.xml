@@ -27,5 +27,6 @@
     </string-array>
 
     <string name="btn_edit_book">Editar</string>
+    <string name="btn_delete_book">Apagar</string>
     <string name="btn_search_price">Pesquisar preços</string>
 </resources>

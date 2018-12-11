@@ -4,14 +4,25 @@ import android.content.Intent
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_book_info.*
 
 class BookInfoActivity : AppCompatActivity() {
+    private var TAG = "BookInfoActivity"
+    private var mAuth = FirebaseAuth.getInstance()
+    private var user = mAuth.currentUser
+    private lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_book_info)
+
+        database = FirebaseDatabase.getInstance().reference
 
         var id = intent.extras.getString("ID")
 
@@ -42,9 +53,14 @@ class BookInfoActivity : AppCompatActivity() {
             openLink(title, author)
         }
 
-        btn_info_edit_book.setOnClickListener{
+        btn_info_edit_book.setOnClickListener {
             var borrowed = intent.getBooleanExtra("BORROWED", false)
             startEditActivity(id, title, author, publisher, thumbnail, status, borrowed)
+        }
+
+        btn_info_delete_book.setOnClickListener {
+            deleteBook(user!!.uid, id)
+            startActivity(Intent(this, MainActivity::class.java))
         }
     }
 
@@ -67,5 +83,19 @@ class BookInfoActivity : AppCompatActivity() {
         intent.putExtra("STATUS", status)
         intent.putExtra("BORROWED", borrowed)
         startActivity(intent)
+    }
+
+    private fun deleteBook(userId: String, idBook: String){
+        try{
+            database.child("users")
+                    .child(userId)
+                    .child("books")
+                    .child(idBook)
+                    .removeValue()
+            Toast.makeText(this, "Livo deletado com sucesso", Toast.LENGTH_SHORT).show()
+        } catch(e: Exception){
+            Toast.makeText(this, "Algo deu errado", Toast.LENGTH_SHORT).show()
+            Log.w(TAG, e.message)
+        }
     }
 }
