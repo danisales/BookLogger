@@ -37,20 +37,36 @@ class CreateBookActivity : AppCompatActivity() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner_books.adapter = adapter
 
+        var mode = intent.extras.getString("MODE")
+        if(mode.equals("EDIT")){
+            btn_add_book.text = resources.getString(R.string.btn_edit_book)
+            var status = intent.extras.getString("STATUS")
+            spinner_books.setSelection(
+                    resources.getStringArray(R.array.book_status).indexOf(status))
+            switch_borrowed.isChecked = intent.getBooleanExtra("BORROWED", false)
+        }
+
         spinner_books.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {}
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                switch_borrowed.isChecked = false
-                switch_borrowed.isEnabled = !spinner_books.selectedItem
+                var wishlistSelected = spinner_books.selectedItem
                         .equals(resources.getStringArray(R.array.book_status)[3])
+                if(wishlistSelected) switch_borrowed.isChecked = false
+                switch_borrowed.isEnabled = !wishlistSelected
             }
         }
 
         btn_add_book.setOnClickListener{
             Log.d(TAG, spinner_books.selectedItem.toString())
             try{
-                addBook(user!!.uid, getBook())
+                var message = ""
+                if(mode.equals("CREATE")){
+                    message = "Livro adicionado com sucesso"
+                } else {
+                    message = "Livro alterado com sucesso"
+                }
+                addBook(user!!.uid, getBook(), message)
                 startActivity(Intent(this.applicationContext, MainActivity::class.java))
             } catch(e: Exception){
                 Log.w(TAG, e.message)
@@ -70,14 +86,14 @@ class CreateBookActivity : AppCompatActivity() {
         return Book(id, title, author, publisher, thumbnail, borrowed, status)
     }
 
-    private fun addBook(userId: String, book: Book){
+    private fun addBook(userId: String, book: Book, message: String){
         try{
             database.child("users")
                     .child(userId)
                     .child("books")
                     .child(book.id)
                     .setValue(book)
-            Toast.makeText(this, "Livro adicionado com sucesso", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
             //finish()
         } catch(e: Exception){
             Toast.makeText(this, "Algo deu errado", Toast.LENGTH_SHORT).show()

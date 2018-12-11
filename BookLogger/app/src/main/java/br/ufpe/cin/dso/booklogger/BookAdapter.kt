@@ -49,6 +49,7 @@ class BookAdapter(private val items: List<Book>, private val c : Context)
             if (!activity.localClassName.equals("MainActivity")) {
                 intent = createIntent(activity, CreateBookActivity(),
                         id, title, author, publisher, thumbnail, borrowed, status)
+                intent.putExtra("MODE", "CREATE")
             }
             c.startActivity(intent)
         }
