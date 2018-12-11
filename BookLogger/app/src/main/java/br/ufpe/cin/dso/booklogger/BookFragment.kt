@@ -7,14 +7,14 @@ import android.support.annotation.RequiresApi
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.fragment_reading.view.*
+import kotlinx.android.synthetic.main.fragment_book.*
+import kotlinx.android.synthetic.main.fragment_book.view.*
 
 class BookFragment : Fragment() {
     val TAG = "BookFragment"
@@ -24,7 +24,7 @@ class BookFragment : Fragment() {
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        var view = inflater.inflate(R.layout.fragment_reading, container, false)
+        var view = inflater.inflate(R.layout.fragment_book, container, false)
         database = FirebaseDatabase.getInstance().reference
 
         Thread(){
@@ -52,10 +52,10 @@ class BookFragment : Fragment() {
                 }
                 books = books.filter{x -> x.status.equals(status)} as ArrayList<Book>
 
-                var listBooks = view!!.findViewById(R.id.list_reading_books) as RecyclerView
-                listBooks.layoutManager = LinearLayoutManager(reqActivity)
-                listBooks.addItemDecoration(DividerItemDecoration(reqActivity, LinearLayoutManager.VERTICAL))
-                listBooks.adapter = BookAdapter(books, reqActivity)
+                //var listBooks = view!!.findViewById(R.id.list_reading_books) as RecyclerView
+                list_reading_books.layoutManager = LinearLayoutManager(reqActivity)
+                list_reading_books.addItemDecoration(DividerItemDecoration(reqActivity, LinearLayoutManager.VERTICAL))
+                list_reading_books.adapter = BookAdapter(books, reqActivity)
             }
             override fun onCancelled(databaseError: DatabaseError) {
                 Log.w(TAG, databaseError.toException().message)

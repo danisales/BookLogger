@@ -32,19 +32,27 @@ class BookAdapter(private val items: List<Book>, private val c : Context)
             holder?.itemView.setBackgroundColor(Color.parseColor("#efeded"))
         }
 
-        var activity = c as Activity
 
-        if(!activity.localClassName.equals("MainActivity")) {
-            holder?.itemView.setOnClickListener() {
-                var intent = Intent(c, CreateBookActivity::class.java)
-                intent.putExtra("ID", i.id)
-                intent.putExtra("TITLE", i.title)
-                intent.putExtra("AUTHOR", i.author)
-                intent.putExtra("PUBLISHER", i.publisher)
-                intent.putExtra("THUMBNAIL", i.thumbnail)
-                c.startActivity(intent)
+        holder?.itemView.setOnClickListener() {
+            var activity = c as Activity
+
+            var id = i.id
+            var title = i.title
+            var author = i.author
+            var publisher = i.publisher
+            var thumbnail = i.thumbnail!!
+            var borrowed = i.borrowed
+            var status = i.status
+
+            var intent = createIntent(activity, BookInfoActivity(),
+                    id, title, author, publisher, thumbnail, borrowed, status)
+            if (!activity.localClassName.equals("MainActivity")) {
+                intent = createIntent(activity, CreateBookActivity(),
+                        id, title, author, publisher, thumbnail, borrowed, status)
             }
+            c.startActivity(intent)
         }
+
     }
 
     class ViewHolder(item: View): RecyclerView.ViewHolder(item), View.OnClickListener{
@@ -53,5 +61,18 @@ class BookAdapter(private val items: List<Book>, private val c : Context)
         val borrowed = item.item_borrowed
 
         override fun onClick(v: View?) {}
+    }
+
+    private fun createIntent (c: Context, a: Activity, id: String, title: String, author: String,
+                              publisher: String, thumbnail: String, borrowed: Boolean, status: String?) : Intent{
+        var intent = Intent(c, a::class.java)
+        intent.putExtra("ID", id)
+        intent.putExtra("TITLE", title)
+        intent.putExtra("AUTHOR", author)
+        intent.putExtra("PUBLISHER", publisher)
+        intent.putExtra("THUMBNAIL", thumbnail)
+        intent.putExtra("STATUS", status)
+        intent.putExtra("BORROWED", borrowed)
+        return intent
     }
 }
