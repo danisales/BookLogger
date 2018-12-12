@@ -1,5 +1,7 @@
 package br.ufpe.cin.dso.booklogger
 
+import android.app.Activity
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
@@ -7,6 +9,14 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_search_book.*
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.IntentFilter
+import android.os.Build
+import android.support.annotation.RequiresApi
+import android.support.v4.content.LocalBroadcastManager
+import android.util.Log
+
 
 class SearchBookActivity : AppCompatActivity() {
 
@@ -14,27 +24,35 @@ class SearchBookActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_book)
 
-        list_search_books.layoutManager = LinearLayoutManager(this)
-        list_search_books.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
+        LocalBroadcastManager
+                .getInstance(this)
+                .registerReceiver(resultReceiver, IntentFilter("GoogleBooksBroadcast"))
 
         btn_search.setOnClickListener{
+            var service = Intent(this, GoogleBooksService::class.java)
             var query = txt_search?.text.toString()
+            service.putExtra("QUERY", query)
+
             if(query != null) {
-                Thread() {
-
-                    var items = GoogleBooksRequest().results(query)
-
-                    runOnUiThread{
-                        if(items.isEmpty()){
-                            Toast.makeText(this@SearchBookActivity, "Nada foi encontrado",
-                                    Toast.LENGTH_SHORT).show()
-                        }
-                        list_search_books.adapter = BookAdapter(items, this)
-                    }
-
-
-                }.start()
+                startService(service)
             }
         }
     }
+
+    private fun setRecyclerView(books: List<Book>){
+        list_search_books.layoutManager = LinearLayoutManager(this)
+        list_search_books.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
+        list_search_books.adapter = BookAdapter(books, this)
+    }
+
+    private val resultReceiver = object : BroadcastReceiver() {
+        @RequiresApi(Build.VERSION_CODES.M)
+        override fun onReceive(context: Context, intent: Intent) {
+            var bundle = intent.extras
+            var items = bundle.getSerializable("RESULT") as List<Book>
+
+            setRecyclerView(items)
+        }
+    }
+
 }

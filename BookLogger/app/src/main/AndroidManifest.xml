@@ -20,31 +20,27 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:configChanges="mcc|mnc|locale|touchscreen|keyboard
-            |keyboardHidden|navigation|screenLayout|fontScale
-            |uiMode|orientation|screenSize|smallestScreenSize
-            |layoutDirection"/>
-        <activity android:name=".SignUpActivity"
-            android:configChanges="mcc|mnc|locale|touchscreen|keyboard
-            |keyboardHidden|navigation|screenLayout|fontScale
-            |uiMode|orientation|screenSize|smallestScreenSize
-            |layoutDirection"/>
-        <activity android:name=".SearchBookActivity"
-            android:configChanges="mcc|mnc|locale|touchscreen|keyboard
-            |keyboardHidden|navigation|screenLayout|fontScale
-            |uiMode|orientation|screenSize|smallestScreenSize
-            |layoutDirection"/>
-        <activity android:name=".CreateBookActivity"
-            android:configChanges="mcc|mnc|locale|touchscreen|keyboard
-            |keyboardHidden|navigation|screenLayout|fontScale
-            |uiMode|orientation|screenSize|smallestScreenSize
-            |layoutDirection"/>
-        <activity android:name=".BookInfoActivity"
-            android:configChanges="mcc|mnc|locale|touchscreen|keyboard
-            |keyboardHidden|navigation|screenLayout|fontScale
-            |uiMode|orientation|screenSize|smallestScreenSize
-            |layoutDirection"></activity>
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard             |keyboardHidden|navigation|screenLayout|fontScale             |uiMode|orientation|screenSize|smallestScreenSize             |layoutDirection"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".SignUpActivity"
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard             |keyboardHidden|navigation|screenLayout|fontScale             |uiMode|orientation|screenSize|smallestScreenSize             |layoutDirection" />
+        <activity
+            android:name=".SearchBookActivity"
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard             |keyboardHidden|navigation|screenLayout|fontScale             |uiMode|orientation|screenSize|smallestScreenSize             |layoutDirection" />
+        <activity
+            android:name=".CreateBookActivity"
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard             |keyboardHidden|navigation|screenLayout|fontScale             |uiMode|orientation|screenSize|smallestScreenSize             |layoutDirection" />
+        <activity
+            android:name=".BookInfoActivity"
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard             |keyboardHidden|navigation|screenLayout|fontScale             |uiMode|orientation|screenSize|smallestScreenSize             |layoutDirection" />
+
+        <service
+            android:name=".FirebaseService"
+            android:exported="false" />
+        <service
+            android:name=".GoogleBooksService"
+            android:exported="false"></service>
     </application>
 
 </manifest>
