@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -36,6 +37,9 @@ class BookInfoActivity : AppCompatActivity() {
         txt_book_info_publisher.text = publisher
 
         var thumbnail = intent.extras.getString("THUMBNAIL")
+        if(!thumbnail.equals("")){
+            loadThumbnail(thumbnail)
+        }
 
         var status = intent.extras.getString("STATUS")
         txt_book_info_status.text = status
@@ -83,6 +87,15 @@ class BookInfoActivity : AppCompatActivity() {
         intent.putExtra("STATUS", status)
         intent.putExtra("BORROWED", borrowed)
         startActivity(intent)
+    }
+
+    private fun loadThumbnail(url: String){
+        Glide.with(this)
+                .load(url)
+                .centerCrop()
+                .crossFade()
+                .override(128, 192)
+                .into(img_book_info_thumbnail)
     }
 
     private fun deleteBook(userId: String, idBook: String){

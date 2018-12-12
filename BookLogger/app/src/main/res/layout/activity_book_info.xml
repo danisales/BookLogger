@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".BookInfoActivity">
+
+    <ImageView
+        android:id="@+id/img_book_info_thumbnail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"/>
+
     <TextView
         android:id="@+id/txt_book_info_title"
         android:layout_width="match_parent"
@@ -43,21 +50,24 @@
         android:textSize="17sp"/>
 
     <Button
-        android:id="@+id/btn_info_edit_book"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_edit_book" />
-
-    <Button
         android:id="@+id/btn_info_price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="1dp"
         android:text="@string/btn_search_price" />
+
+    <Button
+        android:id="@+id/btn_info_edit_book"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:text="@string/btn_edit_book" />
 
     <Button
         android:id="@+id/btn_info_delete_book"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="2dp"
         android:text="@string/btn_delete_book"
         android:background="#FF4444"/>
 
