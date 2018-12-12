@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_book.view.*
 import org.jetbrains.anko.activityManager
 
@@ -27,11 +28,15 @@ class BookAdapter(private val items: List<Book>, private val c : Context)
         val i = items.get(position)
         holder?.title?.text = i.title
         holder?.author?.text = i.author
+
         if(i.borrowed){
             holder?.borrowed?.text = "Emprestado"
             holder?.itemView.setBackgroundColor(Color.parseColor("#efeded"))
         }
 
+        if(i.thumbnail != null && !i.thumbnail.equals("")){
+            loadImage(holder, i.thumbnail)
+        }
 
         holder?.itemView.setOnClickListener() {
             var activity = c as Activity
@@ -60,8 +65,18 @@ class BookAdapter(private val items: List<Book>, private val c : Context)
         val title = item.item_title
         val author = item.item_author
         val borrowed = item.item_borrowed
+        val thumbnail = item.item_thumbnail
 
         override fun onClick(v: View?) {}
+    }
+
+    private fun loadImage(holder: ViewHolder, url: String){
+        Glide.with(c)
+                .load(url)
+                .centerCrop()
+                .crossFade()
+                .override(64, 96)
+                .into(holder.thumbnail)
     }
 
     private fun createIntent (c: Context, a: Activity, id: String, title: String, author: String,
