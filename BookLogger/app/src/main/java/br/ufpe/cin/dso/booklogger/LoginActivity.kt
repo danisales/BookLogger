@@ -33,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
                         startActivity(Intent(applicationContext, MainActivity::class.java))
                     } else {
                         Log.e(TAG, "signInWithEmail:failure", task.exception)
-                        Toast.makeText(this@LoginActivity, "Authentication failed.",
+                        Toast.makeText(this@LoginActivity, "Falha na autenticação",
                                 Toast.LENGTH_SHORT).show()
 
                     }
