@@ -97,6 +97,7 @@ class CreateBookActivity : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if(!dataSnapshot.exists()){
                     updateBook(userId, book, message)
+                    startActivity(Intent(context, MainActivity::class.java))
                 } else {
                     Toast.makeText(context, "Livro já existe", Toast.LENGTH_SHORT).show()
                 }
