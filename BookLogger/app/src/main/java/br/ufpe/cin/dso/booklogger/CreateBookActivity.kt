@@ -9,8 +9,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_create_book.*
 
 class CreateBookActivity : AppCompatActivity() {
@@ -63,11 +62,13 @@ class CreateBookActivity : AppCompatActivity() {
                 var message = ""
                 if(mode.equals("CREATE")){
                     message = "Livro adicionado com sucesso"
+                    createNewBook(user!!.uid, getBook(), message)
+                    finish()
                 } else {
                     message = "Livro alterado com sucesso"
+                    updateBook(user!!.uid, getBook(), message)
+                    startActivity(Intent(this.applicationContext, MainActivity::class.java))
                 }
-                addBook(user!!.uid, getBook(), message)
-                startActivity(Intent(this.applicationContext, MainActivity::class.java))
             } catch(e: Exception){
                 Log.w(TAG, e.message)
             }
@@ -86,7 +87,29 @@ class CreateBookActivity : AppCompatActivity() {
         return Book(id, title, author, publisher, thumbnail, borrowed, status)
     }
 
-    private fun addBook(userId: String, book: Book, message: String){
+    private fun createNewBook(userId: String, book: Book, message: String) {
+        var context = this
+        var dbRef = database.child("users")
+                .child(userId)
+                .child("books")
+                .child(book.id)
+        var eventListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if(!dataSnapshot.exists()){
+                    updateBook(userId, book, message)
+                } else {
+                    Toast.makeText(context, "Livro já existe", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.d(TAG, databaseError.message)
+            }
+        }
+        dbRef.addListenerForSingleValueEvent(eventListener)
+    }
+
+    private fun updateBook(userId: String, book: Book, message: String){
         try{
             database.child("users")
                     .child(userId)
@@ -94,7 +117,6 @@ class CreateBookActivity : AppCompatActivity() {
                     .child(book.id)
                     .setValue(book)
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-            //finish()
         } catch(e: Exception){
             Toast.makeText(this, "Algo deu errado", Toast.LENGTH_SHORT).show()
             Log.w(TAG, e.message)
