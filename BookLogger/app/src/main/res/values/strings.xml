@@ -29,4 +29,11 @@
     <string name="btn_edit_book">Editar</string>
     <string name="btn_delete_book">Apagar</string>
     <string name="btn_search_price">Pesquisar preços</string>
+
+    <string name="txt_current_password">Senha atual</string>
+    <string name="txt_new_password">Nova senha</string>
+    <string name="txt_repeat_new_password">Repetir nova senha</string>
+    <string name="btn_update_password">Atualizar senha</string>
+    <string name="btn_logout">Logout</string>
+
 </resources>
