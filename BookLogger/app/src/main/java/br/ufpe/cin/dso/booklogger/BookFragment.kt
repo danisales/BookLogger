@@ -26,11 +26,22 @@ class BookFragment : Fragment() {
     val TAG = "BookFragment"
     private var mAuth = FirebaseAuth.getInstance()
     private lateinit var database: DatabaseReference
+    private var bookView: View? = null
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        var view = inflater.inflate(R.layout.fragment_book, container, false)
+        this.bookView = inflater.inflate(R.layout.fragment_book, container, false)
         database = FirebaseDatabase.getInstance().reference
+
+        bookView!!.btn_reading_add.setOnClickListener {
+            requireActivity().startActivity(Intent(activity, SearchBookActivity::class.java))
+        }
+
+        return bookView
+    }
+
+    override fun onStart() {
+        super.onStart()
 
         LocalBroadcastManager
                 .getInstance(this.requireActivity())
@@ -40,12 +51,6 @@ class BookFragment : Fragment() {
         var status = arguments!!.get("STATUS") as String
         service.putExtra("STATUS", status)
         activity!!.startService(service)
-
-        view.btn_reading_add.setOnClickListener {
-            requireActivity().startActivity(Intent(activity, SearchBookActivity::class.java))
-        }
-
-        return view
     }
 
     override fun onPause() {
@@ -53,6 +58,11 @@ class BookFragment : Fragment() {
         LocalBroadcastManager
                 .getInstance(this.requireActivity())
                 .unregisterReceiver(resultReceiver)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        this.bookView = null
     }
 
     private fun setRecyclerView(books: List<Book>){
