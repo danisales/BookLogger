@@ -1,17 +1,20 @@
-package br.ufpe.cin.dso.booklogger
+package br.ufpe.cin.dso.booklogger.ui.adapter
 
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import br.ufpe.cin.dso.booklogger.model.Book
+import br.ufpe.cin.dso.booklogger.ui.activity.BookInfoActivity
+import br.ufpe.cin.dso.booklogger.ui.activity.CreateBookActivity
+import br.ufpe.cin.dso.booklogger.R
+import br.ufpe.cin.dso.booklogger.ui.activity.MainActivity
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_book.view.*
-import org.jetbrains.anko.activityManager
 
 
 class BookAdapter(private val items: List<Book>, private val c : Context)
@@ -51,7 +54,7 @@ class BookAdapter(private val items: List<Book>, private val c : Context)
 
             var intent = createIntent(activity, BookInfoActivity(),
                     id, title, author, publisher, thumbnail, borrowed, status)
-            if (!activity.localClassName.equals("MainActivity")) {
+            if (!activity.localClassName.equals("ui.activity.MainActivity")) {
                 intent = createIntent(activity, CreateBookActivity(),
                         id, title, author, publisher, thumbnail, borrowed, status)
                 intent.putExtra("MODE", "CREATE")

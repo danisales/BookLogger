@@ -1,4 +1,4 @@
-package br.ufpe.cin.dso.booklogger
+package br.ufpe.cin.dso.booklogger.ui.activity
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -8,6 +8,8 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import br.ufpe.cin.dso.booklogger.model.Book
+import br.ufpe.cin.dso.booklogger.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_create_book.*
@@ -75,7 +77,7 @@ class CreateBookActivity : AppCompatActivity() {
         }
     }
 
-    private fun getBook() : Book{
+    private fun getBook() : Book {
         val id = intent.extras.getString("ID")
         val title = intent.extras.getString("TITLE")
         val author = intent.extras.getString("AUTHOR")

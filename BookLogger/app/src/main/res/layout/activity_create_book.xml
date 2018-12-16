@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".CreateBookActivity">
+    tools:context=".ui.activity.CreateBookActivity">
 
     <EditText
         android:id="@+id/txt_book_title"

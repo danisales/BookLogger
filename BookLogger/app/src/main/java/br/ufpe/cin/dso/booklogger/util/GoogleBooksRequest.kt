@@ -1,6 +1,6 @@
-package br.ufpe.cin.dso.booklogger
+package br.ufpe.cin.dso.booklogger.util
 
-import android.util.Log
+import br.ufpe.cin.dso.booklogger.model.Book
 import com.github.kittinunf.fuel.httpGet
 import org.json.JSONArray
 import org.json.JSONObject

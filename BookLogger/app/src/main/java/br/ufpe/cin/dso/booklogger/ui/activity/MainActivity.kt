@@ -1,9 +1,12 @@
-package br.ufpe.cin.dso.booklogger
+package br.ufpe.cin.dso.booklogger.ui.activity
 
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import br.ufpe.cin.dso.booklogger.R
+import br.ufpe.cin.dso.booklogger.ui.fragment.BookFragment
+import br.ufpe.cin.dso.booklogger.ui.fragment.SettingsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package br.ufpe.cin.dso.booklogger
+package br.ufpe.cin.dso.booklogger.ui.fragment
 
 
 import android.content.Intent
@@ -10,8 +10,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import br.ufpe.cin.dso.booklogger.ui.activity.LoginActivity
+import br.ufpe.cin.dso.booklogger.R
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.fragment_settings.*
 
 

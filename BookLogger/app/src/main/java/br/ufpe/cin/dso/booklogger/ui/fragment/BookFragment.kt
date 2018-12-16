@@ -1,4 +1,4 @@
-package br.ufpe.cin.dso.booklogger
+package br.ufpe.cin.dso.booklogger.ui.fragment
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -11,16 +11,18 @@ import android.support.v4.app.Fragment
 import android.support.v4.content.LocalBroadcastManager
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import br.ufpe.cin.dso.booklogger.model.Book
+import br.ufpe.cin.dso.booklogger.service.FirebaseService
+import br.ufpe.cin.dso.booklogger.R
+import br.ufpe.cin.dso.booklogger.ui.activity.SearchBookActivity
+import br.ufpe.cin.dso.booklogger.ui.adapter.BookAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_book.*
 import kotlinx.android.synthetic.main.fragment_book.view.*
-import org.jetbrains.anko.support.v4.startService
 
 class BookFragment : Fragment() {
     val TAG = "BookFragment"

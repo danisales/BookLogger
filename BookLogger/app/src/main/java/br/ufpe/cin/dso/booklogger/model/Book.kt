@@ -1,4 +1,4 @@
-package br.ufpe.cin.dso.booklogger
+package br.ufpe.cin.dso.booklogger.model
 
 data class Book (val id: String = "",
             val title: String = "",

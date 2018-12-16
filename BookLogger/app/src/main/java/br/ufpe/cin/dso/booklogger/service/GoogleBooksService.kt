@@ -1,10 +1,10 @@
-package br.ufpe.cin.dso.booklogger
+package br.ufpe.cin.dso.booklogger.service
 
 import android.app.IntentService
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.content.LocalBroadcastManager
-import android.util.Log
+import br.ufpe.cin.dso.booklogger.util.GoogleBooksRequest
 import java.io.Serializable
 
 

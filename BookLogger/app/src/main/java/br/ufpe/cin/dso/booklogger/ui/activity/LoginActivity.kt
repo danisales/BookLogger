@@ -1,4 +1,4 @@
-package br.ufpe.cin.dso.booklogger
+package br.ufpe.cin.dso.booklogger.ui.activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -7,7 +7,7 @@ import android.content.Intent
 import com.google.firebase.auth.FirebaseAuth
 import android.util.Log
 import android.widget.Toast
-import org.jetbrains.anko.doAsync
+import br.ufpe.cin.dso.booklogger.R
 
 class LoginActivity : AppCompatActivity() {
     private val TAG = "LoginActivity"

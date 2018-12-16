@@ -1,13 +1,10 @@
-package br.ufpe.cin.dso.booklogger
+package br.ufpe.cin.dso.booklogger.ui.activity
 
-import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_search_book.*
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -15,7 +12,10 @@ import android.content.IntentFilter
 import android.os.Build
 import android.support.annotation.RequiresApi
 import android.support.v4.content.LocalBroadcastManager
-import android.util.Log
+import br.ufpe.cin.dso.booklogger.model.Book
+import br.ufpe.cin.dso.booklogger.service.GoogleBooksService
+import br.ufpe.cin.dso.booklogger.R
+import br.ufpe.cin.dso.booklogger.ui.adapter.BookAdapter
 
 
 class SearchBookActivity : AppCompatActivity() {

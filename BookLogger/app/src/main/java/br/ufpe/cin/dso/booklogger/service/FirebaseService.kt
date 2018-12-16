@@ -1,12 +1,11 @@
-package br.ufpe.cin.dso.booklogger
+package br.ufpe.cin.dso.booklogger.service
 
 import android.app.IntentService
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.content.LocalBroadcastManager
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import br.ufpe.cin.dso.booklogger.model.Book
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 

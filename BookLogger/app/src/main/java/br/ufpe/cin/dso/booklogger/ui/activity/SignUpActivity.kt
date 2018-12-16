@@ -1,4 +1,4 @@
-package br.ufpe.cin.dso.booklogger
+package br.ufpe.cin.dso.booklogger.ui.activity
 
 import android.annotation.SuppressLint
 import android.support.v7.app.AppCompatActivity
@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.google.firebase.auth.FirebaseAuth
 import android.util.Log
 import android.widget.Toast
+import br.ufpe.cin.dso.booklogger.R
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
