@@ -26,4 +26,5 @@ Foram utilizados Services para as tarefas de devem rodar em background.
 
 ### Biblioteca para carregar imagens
 Para carregar as thumbnails dos livros, usei a biblioteca Glide, que é otimizada para usar menos memória e CPU, e também faz a tarefa em background.
+
 ![](https://lh6.googleusercontent.com/2cbqTOcuMSm2SFS1xXwddm1nQAioxpMiBOvdp6fEP847NtSpNVwDl7m22RGxeYH_AM3kAgxqyG-FYN3yYAAB8qc0m0qRjvAcf2amroEUDfowtV_cPJDlORMpniS0pY8yPlAWaP2V)
