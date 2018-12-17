@@ -39,6 +39,13 @@ class SearchBookActivity : AppCompatActivity() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        LocalBroadcastManager
+                .getInstance(this)
+                .unregisterReceiver(resultReceiver)
+    }
+
     private fun setRecyclerView(books: List<Book>){
         list_search_books.layoutManager = LinearLayoutManager(this)
         list_search_books.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
