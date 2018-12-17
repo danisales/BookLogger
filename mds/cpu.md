@@ -17,13 +17,13 @@ Nesse último caso podemos ver picos de uso de CPU quando adicionamos um novo li
 ## Boas práticas
 
 ### Adapter
-![](https://lh4.googleusercontent.com/5DTIxNknbbXV_6ryY3g0Hdp5BcWpECdInoVhgn9HFydXzYgUNdsUXT8-aOPD2U9i0-JK6oETcr9xIZ7dGEwjXgSi0bGCp3VO6KE_SaXZGXco0RDjtqqZZPZGmqp-hSjQc8FkDIbw)
 Foi usado um Adapter para as listas, que possibilita o View Recycling e ajuda a melhorar a performance.
+![](https://lh4.googleusercontent.com/5DTIxNknbbXV_6ryY3g0Hdp5BcWpECdInoVhgn9HFydXzYgUNdsUXT8-aOPD2U9i0-JK6oETcr9xIZ7dGEwjXgSi0bGCp3VO6KE_SaXZGXco0RDjtqqZZPZGmqp-hSjQc8FkDIbw)
 
 ### Service
-![](https://lh3.googleusercontent.com/VSLAGzbqUvnwMlWEu69yCpdW2PAeSk4RtnXeuoYo0r5Ox5AjLduIHL040qPdEOrlYf_sItJj0fUXnNEIX9OpQZ4_HZ8f2_csa7Skw9eiOovgXOXGjnznPzq9T0mFMA6q5146TBF6)
 Foram utilizados Services para as tarefas de devem rodar em background.
+![](https://lh3.googleusercontent.com/VSLAGzbqUvnwMlWEu69yCpdW2PAeSk4RtnXeuoYo0r5Ox5AjLduIHL040qPdEOrlYf_sItJj0fUXnNEIX9OpQZ4_HZ8f2_csa7Skw9eiOovgXOXGjnznPzq9T0mFMA6q5146TBF6)
 
 ### Biblioteca para carregar imagens
+Para carregar as thumbnails dos livros, usei a biblioteca Glide, que é otimizada para usar menos memória e CPU, e também faz a tarefa em background.
 ![](https://lh6.googleusercontent.com/2cbqTOcuMSm2SFS1xXwddm1nQAioxpMiBOvdp6fEP847NtSpNVwDl7m22RGxeYH_AM3kAgxqyG-FYN3yYAAB8qc0m0qRjvAcf2amroEUDfowtV_cPJDlORMpniS0pY8yPlAWaP2V)
-Para carregar as thumbnails dos livros, usei a biblioteca Glide, que é otimizada para usar menos memória, CPU e faz a tarefa em background.
