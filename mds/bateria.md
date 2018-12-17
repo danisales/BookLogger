@@ -1,6 +1,6 @@
 # Bateria
 
-O Android Studio 3.2 tem a opção de Energy no Android Profiler, porém, apenas para devices com Android 8.0 ou superior. Como o device que estou usando para testes usa Android 7, não consegui obter os dados usando o Profiles.
+O Android Studio 3.2 tem a opção de Energy no Android Profiler, porém, apenas para devices com Android 8.0 ou superior. Como o device que estou usando para testes usa Android 7, não consegui obter os dados usando o Profile.
 
 Também tive problemas com o Battery Historian, um dos principais motivos é que a própria documentação estava errada algumas vezes, como é mostrado nessas issues:
 
